@@ -24,7 +24,34 @@ var tags = {
         "name": "PointOfInitiationMethod",
         "format": "N",
         "presence": "O"
-    }, 
+    },
+    // merchant account information
+    // 02 - 03 Visa
+    // 04 - 05 Mastercard
+    // 06 - 08 EMVCo
+    // 09 - 10 Discover
+    // 11 - 12 Amex
+    // 13 - 14 JCB
+    // 15 - 16 UnionPay
+    // 17 - 25 EMVCo
+    // 29 Promptpay
+    "29": {
+        "id": "29",
+        "name": "MerchantAccountInformation",
+        "format": "ans",
+        "presence": "M",
+        // specific field for merchant
+        "merchant": "PromptPay",
+        "merchantInfo": {}
+        // subtemplate for merchant
+        // applicationId - App id for promptpay A000000677010111
+        // merchant id type - in promptpay, they can use 3 type of id
+        // phone number (01) length 13
+        //   the format will begin with 00 concat by country code and then mobile number exclude leading zero
+        //   ex. 087-111-1111 will be 0066871111111
+        // tax id or citizen id (02) length 13
+        // ewallet id (03) length 15 
+    },
     "52": {
         "id": "52",
         "name": "MerchantCategoryCode",
