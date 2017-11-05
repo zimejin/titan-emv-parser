@@ -89,10 +89,11 @@ var tags = {
         "presence": "M"
     },
     "63": {
-        "id": "64",
+        "id": "63",
         "name": "CRC",
         "format": "ans",
-        "presence": "M"
+        "presence": "M",
+        "valid": true // check that it valid CRC
     }
 }
 

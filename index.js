@@ -11,7 +11,7 @@
  * 
  * @license MIT
  */
-
+var crc = require('crc');
 var emv_tags = require('./tags.js');
 // 00020101021229370016A000000677010111011300668799210195802TH53037645406500.006304ABAC
 
@@ -30,6 +30,8 @@ function parse(emvdata) {
         result[tag.name] = temp;
         // check merchant info
         if(key == "29") temp.merchantInfo = _parsePromptPayInfo(temp);
+        // check crc
+        if(key == "63") temp.valid = _checkCRC(emvdata);
     }
     return result;
 }
@@ -61,6 +63,14 @@ function _parsePromptPayInfo(merchantTag) {
 
 function _formatMobileNumber(input) {
     return "0" + input.substr(4);
+}
+
+function _checkCRC(input) {
+    var inputCRC = input.substr(-4).toUpperCase();
+    var content = input.substr(0, input.length - 4);
+    var crcValue = crc.crc16xmodem(content, 0xffff);
+    crcValue = ("0000" + crcValue.toString(16).toUpperCase()).slice(-4);
+    return crcValue == inputCRC;
 }
 
 function _parseTag(emvdata) {
