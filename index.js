@@ -1,7 +1,7 @@
 /*!
  * promptpay-emvco-parser
  * JavaScript library to parse the promptpay qrcode into emvco object
- * <https://>
+ * <https://github.com/apemon/promptpay-emv-parser>
  *
  * Refs:
  * - https://www.blognone.com/node/95133
