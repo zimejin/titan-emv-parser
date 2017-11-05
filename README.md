@@ -1,4 +1,4 @@
-# promptpay-emvco-parser
+# promptpay-emvco-parser [![npm version](https://badge.fury.io/js/promptpay-emvco-parser.svg)](https://badge.fury.io/js/promptpay-emvco-parser)
 
 JavaScript library to parse the promptpay qrcode into emvco object
 
