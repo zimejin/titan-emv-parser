@@ -29,7 +29,7 @@ function parse(emvdata) {
         temp.data = value.data;
         result[tag.name] = temp;
         // check merchant info
-        if(key == "29") result.merchantInfo = _parsePromptPayInfo(temp);
+        if(key == "29") temp.merchantInfo = _parsePromptPayInfo(temp);
     }
     return result;
 }

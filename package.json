@@ -4,12 +4,15 @@
   "description": "Library to parse the promptpay qrcode into emvco object",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha"
   },
   "keywords": [
     "promptpay",
     "emvco"
   ],
   "author": "Parin Chiamananthapong",
-  "license": "MIT"
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^4.0.1"
+  }
 }
