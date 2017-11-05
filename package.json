@@ -1,6 +1,6 @@
 {
   "name": "promptpay-emvco-parser",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Library to parse the promptpay qrcode into emvco object",
   "main": "index.js",
   "scripts": {
