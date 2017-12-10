@@ -13,7 +13,6 @@
  */
 var crc = require('crc');
 var emv_tags = require('./tags.js');
-// 00020101021229370016A000000677010111011300668799210195802TH53037645406500.006304ABAC
 
 function parse(emvdata) {
     // tokenize the string first
