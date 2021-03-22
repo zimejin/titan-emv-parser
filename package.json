@@ -1,5 +1,5 @@
 {
-  "name": "promptpay-emvco-parser",
+  "name": "titan-emvco-parser",
   "version": "0.0.2",
   "description": "Library to parse the promptpay qrcode into emvco object",
   "main": "index.js",
@@ -7,10 +7,10 @@
     "test": "mocha"
   },
   "keywords": [
-    "promptpay",
+    "titan",
     "emvco"
   ],
-  "author": "Parin Chiamananthapong",
+  "author": "Zimuzo Ejinkeonye",
   "license": "MIT",
   "devDependencies": {
     "mocha": "^4.0.1"
