@@ -1,6 +1,6 @@
 {
   "name": "titan-emvco-parser",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "Library to parse the promptpay qrcode into emvco object",
   "main": "index.js",
   "scripts": {
