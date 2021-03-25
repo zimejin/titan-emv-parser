@@ -11,7 +11,6 @@
  * 
  * @license MIT
  */
-var crc = require('crc');
 var emv_tags = require('./tags.js');
 
 function parse(emvdata: string) {
