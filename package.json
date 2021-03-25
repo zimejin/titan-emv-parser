@@ -1,21 +1,18 @@
 {
   "name": "titan-emvco-parser",
   "version": "0.0.1",
-  "description": "Library to parse the promptpay qrcode into emvco object",
+  "description": "Library to parse the titanpay qrcode into emvco object",
   "main": "index.js",
-  "scripts": {
-    "test": "mocha"
-  },
+  "scripts": {},
   "keywords": [
-    "titan",
+    "titan trust",
+    "parser"
     "emvco"
   ],
-  "author": "Zimuzo Ejinkeonye",
+  "authors": ["Parin Chiamananthapong", "Zimuzo Ejinkeonye"],
   "license": "MIT",
   "devDependencies": {
     "mocha": "^4.0.1"
   },
-  "dependencies": {
-    "crc": "^3.5.0"
-  }
+  "dependencies": {}
 }
