@@ -14,63 +14,45 @@
 var crc = require('crc');
 var emv_tags = require('./tags.js');
 
-function parse(emvdata) {
+function parse(emvdata: string) {
     // tokenize the string first
     var tags = _parseTag(emvdata);
+
     // read from each tag
     var result = {};
-    var keys = Object.keys(tags);
-    for(var i=0;i<keys.length;i++) {
-        var key = keys[i];
-        var value = tags[key];
-        var tag = emv_tags[key];
+    var keys = Object.keys(_tags);
+    for (var i = 0; i < keys.length; i++) {
+      var key = keys[i];
+
+      var value = tags[key];
+      if (value) {
+        var tag = _tags[key];
         var temp = tag;
         temp.data = value.data;
         result[tag.name] = temp;
-        // check merchant info
-        if(key == "29") temp.merchantInfo = _parsePromptPayInfo(temp);
-        // check crc
-        if(key == "63") temp.valid = _checkCRC(emvdata);
+        // check subdomain info
+        if (key == "15") temp.details = _parseOrganisationInfo(temp);
+        if (key == "26") temp.subdomainInfo = _parseSubdomains(temp);
+      }
     }
     return result;
-}
+  }
 
-function _parsePromptPayInfo(merchantTag) {
-    // 29 - promptpay
-    var merchantData = _parseTag(merchantTag.data);
-    var applicationId = merchantData["00"];
-    // find promptpay id type
-    var promptpayIdType;
-    if(merchantData["01"]) promptpayIdType = "MobileNumber";
-    else if(merchantData["02"]) promptpayIdType = "TaxId";
-    else if(merchantData["03"]) promptpayIdType = "EWalletId";
-    else promptpayIdType = "Unknown";
-    // formatting
-    var promptpayNumber;
-    switch(promptpayIdType) {
-        case "MobileNumber": promptpayNumber = _formatMobileNumber(merchantData["01"].data); break;
-        case "TaxId": promptpayNumber = merchantData["02"].data; break;
-        case "EWalletId": promptpayNumber = merchantData["03"].data; break;
-    }
-    // construct merchant info
-    var merchantInfo = {
-        "promptpayIdType": promptpayIdType,
-        "promptpayNumber": promptpayNumber
-    }
-    return merchantInfo;
-}
+function _parseOrganisationInfo(tag: { data: any }) {
+    let data, info, paymentInfo;
+    data = _parseTag(tag.data);
 
-function _formatMobileNumber(input) {
-    return "0" + input.substr(4);
-}
+    info = Object.values(data)[0]
+      ["data"].split("*")
+      .filter((i: string) => i !== "");
 
-function _checkCRC(input) {
-    var inputCRC = input.substr(-4).toUpperCase();
-    var content = input.substr(0, input.length - 4);
-    var crcValue = crc.crc16xmodem(content, 0xffff);
-    crcValue = ("0000" + crcValue.toString(16).toUpperCase()).slice(-4);
-    return crcValue == inputCRC;
-}
+    paymentInfo = {
+      organizationNumber: info[0],
+      forwardingNumber: info[1],
+      merchantID: info[2],
+    };
+    return paymentInfo;
+  }
 
 function _parseTag(emvdata) {
     var tags = {};
