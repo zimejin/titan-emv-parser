@@ -1,5 +1,5 @@
 /*!
- * promptpay-emvco-parser
+ * titanpay-emvco-parser
  * JavaScript library to parse the promptpay qrcode into emvco object
  * <https://github.com/apemon/promptpay-emv-parser>
  *
