@@ -1,6 +1,6 @@
 {
   "name": "titan-emvco-parser",
-  "version": "0.0.1",
+  "version": "0.0.0",
   "description": "Library to parse the titanpay qrcode into emvco object",
   "main": "index.js",
   "scripts": {},
